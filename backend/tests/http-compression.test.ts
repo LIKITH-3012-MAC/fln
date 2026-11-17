@@ -75,7 +75,7 @@ test('JSON responses stay uncompressed when the client requests identity encodin
 });
 
 test('the production API installs compression before body parsers', () => {
-  const source = readFileSync(resolve(process.cwd(), 'backend/src/index.ts'), 'utf8');
+  const source = readFileSync(resolve(process.cwd(), 'src/index.ts'), 'utf8');
   const install = source.indexOf('app.use(compression());');
   const jsonParser = source.indexOf('app.use(express.json(');
   const urlEncodedParser = source.indexOf('app.use(express.urlencoded(');
