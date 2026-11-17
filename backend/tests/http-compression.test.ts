@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
-import http, { type IncomingHttpHeaders } from 'node:http';
+import http, { type IncomingHttpHeaders, type OutgoingHttpHeaders } from 'node:http';
 import express from 'express';
 import compression from 'compression';
 import { gunzipSync } from 'node:zlib';
@@ -28,7 +28,7 @@ async function startServer() {
   return { server, url: `http://127.0.0.1:${address.port}/api/students` };
 }
 
-function request(url: string, headers: IncomingHttpHeaders = {}) {
+function request(url: string, headers: OutgoingHttpHeaders = {}) {
   return new Promise<{ status: number; headers: IncomingHttpHeaders; body: Buffer }>((resolveRequest, reject) => {
     const req = http.get(url, { headers }, (res) => {
       const chunks: Buffer[] = [];
